@@ -1,0 +1,319 @@
+:root {
+    --primary: #3b82f6; /* Soft elegant blue */
+    --primary-hover: #2563eb;
+    --bg-panel: rgba(22, 24, 29, 0.85); /* Smooth dark background */
+    --border-panel: rgba(255, 255, 255, 0.08);
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    --input-bg: rgba(255, 255, 255, 0.04);
+    --input-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #0f1115;
+    color: var(--text-main);
+}
+
+#map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+/* Zarif Gradient Gölge - Yaşayan Atmosfer (Nefes Alma Efekti) */
+#map-vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 2;
+    animation: breatheVignette 8s infinite ease-in-out;
+}
+
+@keyframes breatheVignette {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+/* Modern, Yumuşak Sol Panel */
+#panel {
+    position: absolute;
+    top: 25px;
+    bottom: 25px;
+    left: 25px;
+    width: 330px;
+    box-sizing: border-box;
+    background: var(--bg-panel);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-panel);
+    padding: 26px 24px 26px 24px;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    overflow-y: auto;
+}
+
+#panel::-webkit-scrollbar {
+    width: 4px;
+}
+
+#panel::-webkit-scrollbar-thumb {
+    background: var(--border-panel);
+    border-radius: 2px;
+}
+
+#panel h2 {
+    margin-top: 0;
+    color: var(--text-main);
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: -0.2px;
+}
+
+.info {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.form-group {
+    margin-bottom: 14px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-group input:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-group #konum {
+    color: var(--primary);
+    background-color: rgba(59, 130, 246, 0.05);
+    border-color: rgba(59, 130, 246, 0.2);
+    text-align: left;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-top: 8px;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background: var(--primary-hover);
+}
+
+button:active {
+    opacity: 0.9;
+}
+
+#sonuc-kutu {
+    margin-top: 20px;
+    padding: 16px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-panel);
+    border-radius: 10px;
+    text-align: center;
+}
+
+#sonuc-kutu p.title {
+    margin: 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+#fiyat-etiket {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 6px 0 0 0;
+}
+
+/* YUMUŞAK, MODERN İŞARETLEYİCİ TASARIMI */
+.smooth-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    transform-origin: bottom center;
+}
+
+.marker-card {
+    background: #ffffff;
+    color: #111827;
+    padding: 6px 14px;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.marker-pin {
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: markerPulse 2s infinite ease-in-out;
+}
+
+@keyframes markerPulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 10px var(--primary); }
+    50% { transform: scale(1.15); box-shadow: 0 0 25px var(--primary), 0 0 50px var(--primary); }
+    100% { transform: scale(0.95); box-shadow: 0 0 10px var(--primary); }
+}
+
+/* YENİ EKLENEN KURUMSAL KİMLİK: MARKA ROZETİ */
+#brand-badge {
+    position: absolute;
+    top: 25px;
+    left: 380px; /* Panelden uzaklaştır */
+    background: var(--bg-panel);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-panel);
+    padding: 14px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: none; /* Harita etkileşimini bloklamaması için */
+}
+
+#brand-badge .icon {
+    font-size: 26px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+#brand-badge .text {
+    display: flex;
+    flex-direction: column;
+}
+
+#brand-badge strong {
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: -0.2px;
+    font-weight: 600;
+}
+
+#brand-badge span {
+    font-size: 11px;
+    color: #10b981; /* Güven veren yeşil renk */
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    margin-top: 3px;
+}
+
+/* YENİ EKLENEN: HARİTA LEJANTI (DEPREM ALGISINI YIKAR) */
+#map-legend {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    background: var(--bg-panel);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-panel);
+    padding: 18px 24px;
+    border-radius: 12px;
+    z-index: 10;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    pointer-events: none;
+}
+
+.legend-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.legend-item:last-child {
+    margin-bottom: 0;
+}
+
+.legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    border: 2px solid rgba(255,255,255,0.8);
+}
+
+.legend-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-main);
+}

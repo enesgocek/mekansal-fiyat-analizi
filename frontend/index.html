@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emlak Değerleme Platformu</title>
+
+    <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div id="map-container"></div>
+    <div id="map-vignette"></div>
+
+    <!-- Marka Rozeti (Emlak Hissiyatı İçin) -->
+    <div id="brand-badge">
+        <span class="icon">🏢</span>
+        <div class="text">
+            <strong>SmartPrice AI</strong>
+            <span>Emlak Değerleme Analizi</span>
+        </div>
+    </div>
+
+    <!-- Harita Lejantı (Noktaların Deprem Değil Satış Verisi Olduğunu Açıklar) -->
+    <div id="map-legend">
+        <div class="legend-title">Harita Lejantı</div>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #10b981;"></span>
+            <span class="legend-label">Geçmiş Satış Verisi (AI Eğitimi)</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #3b82f6;"></span>
+            <span class="legend-label">Analiz Edilen Hedef Konum</span>
+        </div>
+    </div>
+
+    <div id="panel">
+        <h2>Emlak Değerleme Platformu</h2>
+        <p class="info">Seattle metropol haritası üzerinde analiz edilecek bölgeyi seçin.</p>
+
+        <div class="form-group">
+            <label>Oda Sayısı</label>
+            <input type="number" id="bedrooms" value="3">
+        </div>
+        <div class="form-group">
+            <label>Banyo Sayısı</label>
+            <input type="number" id="bathrooms" value="2" step="0.5">
+        </div>
+        <div class="form-group">
+            <label>İç Kullanım Alanı (SQFT)</label>
+            <input type="number" id="sqft_living" value="1800">
+        </div>
+        <div class="form-group">
+            <label>İnşaat Kalitesi (1-13)</label>
+            <input type="number" id="grade" value="7" min="1" max="13">
+        </div>
+        <div class="form-group">
+            <label>Hedef Koordinat</label>
+            <input type="text" id="konum" value="47.6062, -122.3321" readonly>
+            <div id="sinir-uyarisi" style="display: none; color: #fca5a5; font-size: 12px; margin-top: 8px; padding: 6px 10px; background: rgba(239, 68, 68, 0.15); border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.3);">
+                ⚠️ Lütfen King County sınırları içinde bir konum seçin.
+            </div>
+        </div>
+
+        <!-- Inline Javascript onclick silindi, modüler main.js'e bağlandı -->
+        <button id="btn-hesapla">Piyasa Değerini Hesapla</button>
+
+        <div id="sonuc-kutu">
+            <p class="title">Tahmin Edilen Piyasa Değeri</p>
+            <p id="fiyat-etiket">$0</p>
+        </div>
+    </div>
+
+    <!-- ES6 Modüler Mimari Başlangıç Noktası -->
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
