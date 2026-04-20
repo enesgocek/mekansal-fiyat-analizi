@@ -8,7 +8,7 @@
 
 SmartPrice AI, King County (Seattle) bölgesi için önceden eğitilmiş bir Makine Öğrenimi (Machine Learning) modeli kullanarak, girilen coğrafi ve fiziksel parametrelere göre anında, yüksek doğruluklu emlak piyasa değeri tahmini yapan kurumsal (enterprise-grade) bir PropTech (Gayrimenkul Teknolojisi) platformudur.
 
-<img src="images/harita-gorseli.png" alt="SmartPrice AI Haritası" width="700">
+<img width="1914" height="908" alt="harita-gorseli" src="https://github.com/user-attachments/assets/fa72dceb-c44b-405a-bcc1-3f695f29b5b0" />
 
 ## 🌟 Öne Çıkan Özellikler
 
