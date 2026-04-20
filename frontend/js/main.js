@@ -31,11 +31,24 @@ createModernMarker(secilenBoylam, secilenEnlem);
 
 // 2. Verileri Asenkron Çek (Anonim Async Fonksiyon ile sarmalandı)
 (async () => {
+    // Tüm verileri çekmek için harcanan zaman
     kingCountyPolygon = await fetchKingCountyBoundary();
     const houseGeoJSON = await fetchHousesGeoJSON();
 
     // 3. Katmanları Haritaya İşle
     setupMapLayers(kingCountyPolygon, houseGeoJSON, secilenBoylam, secilenEnlem);
+
+    // 🚀 Cutscene (Oyunvari) Yükleme Gecikmesi
+    // Ağ hızı çok iyi olsa bile kullanıcının arayüzü tam oturmuş ve
+    // estetik bir şekilde görmesi için ek (minimum) 1.2 saniyelik bir gecikme ekliyoruz.
+    setTimeout(() => {
+        const splash = document.getElementById('splash-screen');
+        if (splash) {
+            splash.classList.add('hidden');
+            // Transition bittikten sonra DOM'u temizle
+            setTimeout(() => splash.remove(), 1000);
+        }
+    }, 1200);
 })();
 
 // 4. Etkileşim: Haritaya Tıklama
